@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.1"><meta name="naver-site-verification" content="4f3c8ad54fee3ab0c7a2b2d015ddd047245accd5"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><script src="/live2d/load2d.js"></script><title>텐서플로우 &amp; 파이썬 환경 구축하기 - Kinetic&#039;s BLOG</title><meta property="og:image" content="https://kinetic.codes//2019/05/25/tensorflow-development-environment/python.png"><meta description="파이썬과 텐서플로우를 사용할 수 있는 환경을 구축해보자"><meta property="og:type" content="blog"><meta property="og:title" content="텐서플로우 &amp; 파이썬 환경 구축하기"><meta property="og:url" content="http://kinetic27.github.io/"><meta property="og:site_name" content="Kinetic&#039;s BLOG"><meta property="og:description" content="파이썬과 텐서플로우를 사용할 수 있는 환경을 구축해보자"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="http://kinetic27.github.io/2019/05/25/tensorflow-development-environment/python.png"><meta property="article:published_time" content="2019-05-24T16:03:00.000Z"><meta property="article:modified_time" content="2020-06-21T17:28:54.443Z"><meta property="article:author" content="Kinetic"><meta property="article:tag" content="code"><meta property="article:tag" content="python"><meta property="article:tag" content="tensorflow"><meta property="article:tag" content="machine_learning"><meta property="article:tag" content="deep_leanring"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/2019/05/25/tensorflow-development-environment/python.png"><meta property="twitter:creator" content="@dev_kinetic"><meta property="twitter:site" content="dev_kinetic"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://kinetic27.github.io/2019/05/25/tensorflow-development-environment/"},"headline":"Kinetic's BLOG","image":["http://kinetic27.github.io/2019/05/25/tensorflow-development-environment/python.png"],"datePublished":"2019-05-24T16:03:00.000Z","dateModified":"2020-06-21T17:28:54.443Z","author":{"@type":"Person","name":"Kinetic27"},"description":"파이썬과 텐서플로우를 사용할 수 있는 환경을 구축해보자"}</script><link rel="canonical" href="http://kinetic27.github.io/2019/05/25/tensorflow-development-environment/"><link rel="alternative" href="/rss2.xml" title="Kinetic&#039;s BLOG" type="application/atom+xml"><link rel="icon" href="/images/fav.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/xt256.css"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-155063421-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-155063421-1');</script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script></head><body class="is-2-column"><script type="text/javascript" src="/js/imaegoo/night.js"></script><canvas id="universe"></canvas><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img class="logo-img" src="/images/logo.svg" alt="Kinetic&#039;s BLOG" height="28"><img class="logo-img-dark" src="/images/logo-white.svg" alt="Kinetic&#039;s BLOG" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a><a class="navbar-item" href="/donations">Donations</a><a class="navbar-item" href="/pages">Pages</a></div><div class="navbar-end"><a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub" href="https://github.com/kinetic27"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="카탈로그" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="thumbnail" src="/2019/05/25/tensorflow-development-environment/python.png" alt="텐서플로우 &amp; 파이썬 환경 구축하기"></span></div><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><time class="level-item" datetime="2019-05-24T16:03:00.000Z" title="2019-05-24T16:03:00.000Z">2019-05-25</time><span class="level-item"><a class="link-muted" href="/categories/machine-learning/">Machine Learning</a></span><span class="level-item">8분 읽기 (대략 1210 단어)</span><span class="level-item" id="busuanzi_container_page_pv"><i class="far fa-eye"></i>&nbsp;&nbsp;<span id="busuanzi_value_page_pv">0</span>명이 읽음</span></div></div><h1 class="title is-3 is-size-4-mobile">텐서플로우 &amp; 파이썬 환경 구축하기</h1><div class="content"><p>파이썬과 텐서플로우를 사용할 수 있는 환경을 구축해보자</p>
+<a id="more"></a>
+<p><strong>본 글은 학교 동아리용으로 작성된 관계로 Anaconda를 이용하지 않습니다</strong></p>
+<h1 id="개발-환경-소개"><a href="#개발-환경-소개" class="headerlink" title="개발 환경 소개"></a>개발 환경 소개</h1><p>이번에 구축할 개발 환경은 텐서플로우(Tensorflow)와 파이썬(Python)을 이용합니다.</p>
+<p><img src="python.png" alt="python_logo"></p>
+<blockquote>
+<p><strong>파이썬</strong>은 1991년 프로그래머인 귀도 반 로섬이 발표한 고급 프로그래밍 언어로, 플랫폼 독립적이며 <strong>인터프리터식</strong>, <strong>객체지향적</strong>, <strong>동적 타이핑 대화형</strong> 언어입니다.</p>
+</blockquote>
+<p>파이썬은 방대한 라이브러리를 지원하여 높은 생산성과 빠른 개발 속도를 가진것이 특징입니다.<br></p>
+<p><img src="tensorflow.png" alt="tensorflow_logo"></p>
+<blockquote>
+<p><strong>텐서플로우</strong> 는 구글에서 지원하는 파이썬 환경에서 딥러닝과 같은 인공지능 기법들을 쉽게 구현하도록 도와주는 오픈소스 라이브러리입니다.</p>
+</blockquote>
+<p>텐서플로우는 계산 구조와 목표 함수만 정의하면 자동으로 미분 계산을 처리해줘 매우 편리합니다.<br></p>
+<hr>
+<h1 id="파이썬-설치"><a href="#파이썬-설치" class="headerlink" title="파이썬 설치"></a>파이썬 설치</h1><br>
+그럼 바로 Python부터 설치해봅시다.
+
+<p>먼저 <a href="https://www.python.org/downloads/windows/" rel="external nofollow noopener noreferrer" target="_blank">https://www.python.org/downloads/windows/</a> 에 들어갑니다.</p>
+<p>여러 가지 버전 중 자신의 컴퓨터에 해당하는 버전을 설치해봅시다.</p>
+<p><img src="py_install.png" alt="py_install"></p>
+<p>저는 여기에서 윈도우 <code>Windows x86 executable installer</code>버전을 설치하겠습니다.</p>
+<p><img src="py_install_window.png" alt="py_install"></p>
+<p>이때 여기에서</p>
+<ul>
+<li><input checked disabled type="checkbox"> <em>Add Python {version} to Path</em></li>
+</ul>
+<p>를 꼭 체크해주세요!!</p>
+<p>이를 체크해야 환경 변수에 파이썬 경로가 추가되어서 어떤 곳에서 나 <code>python</code>을 사용할 수 있습니다.</p>
+<p>설치가 되었다면 <code>Window + R</code>을 눌러 명령 프롬프트(CMD)창을 실행시켜줍니다.</p>
+<p><img src="execution_cmd.png" alt="py_cmd"></p>
+<p>그 다음 <code>python</code>을 입력하여 잘 작동하는지 확인하고 창을 닫아줍니다.</p>
+<p><img src="cmd_1.png" alt="py_cmd_1"></p>
+<p>여기서 Python을 찾을 수 없다는 메시지가 뜨면 아까 설치 과정에서</p>
+<ul>
+<li><input checked disabled type="checkbox"> <em>Add Python {version} to Path</em></li>
+</ul>
+<p>를 체크하지 않아서 환경 변수에 추가가 안된 경우입니다.</p>
+<p>그럴 경우 다시 설치 파일을 실행시켜 파이썬을 제거 후 위의 파이썬 설치 과정을 다시 진행하면 됩니다.</p>
+<hr>
+<h1 id="텐서플로우-Tensorflow-설치"><a href="#텐서플로우-Tensorflow-설치" class="headerlink" title="텐서플로우(Tensorflow) 설치"></a>텐서플로우(Tensorflow) 설치</h1><p>다시 <code>Window + R</code>을 눌러 명령 프롬프트(CMD)창을 실행시켜줍니다.</p>
+<p><img src="execution_cmd.png" alt="py_exe_cmd"></p>
+<p>먼저 <code>pip3 install --upgrade pip</code>로 pip를 업그레이드 해준 후</p>
+<p><img src="cmd_2.png" alt="py_cmd_2"></p>
+<p><code>pip3 install tensorflow</code>를 입력하여 텐서플로우를 설치해줍니다.</p>
+<p><img src="cmd_3.png" alt="py_cmd_3"></p>
+<p>여기서 <code>pip</code>는 파이썬으로 작성된 패키지 소프트웨어를 설치 &amp; 관리하는 패키지 관리 시스템을 말합니다.</p>
+<p>이제 <code>python</code>을 입력하여 파이썬 커멘드(Command) 라인으로 들어가줍니다.</p>
+<p>한번 잘 작동하는지 아래의 코드를 입력하여 테스트를 해봅시다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">hello = tf.constant(<span class="string">'Hello World!'</span>)</span><br><span class="line">sess = tf.Session()</span><br></pre></td></tr></table></figure>
+
+<p><img src="cmd_4.png" alt="py_cmd_4"></p>
+<p>이 스크린샷처럼</p>
+<p><code>I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2</code></p>
+<p>와 같은 오류가 뜰 수 있는데, 이는 직역하면</p>
+<p><code>당신의 CPU는 이 텐서플로우 바이너리가 사용하지 않은 명령어(instructions)들을 지원한다.</code></p>
+<p>라는 뜻으로 실행 속도를 더 개선시킬 수 있으므로 컴파일 옵션을 최적화하라는 경고 메시지이므로 무시하고 넘어갑니다.</p>
+<blockquote>
+<p><strong><em>경고 상세 설명</em></strong></p>
+<p>최신 CPU들은 AVX, SSE4 같은 명령어들을 제공합니다.<br><br><br>이 명령어들은 CPU가 선형대수(Linear Algebra) 연산을 좀 더 빠르게 수행할 수 있도록 도와주는 역할을 합니다.<br><br><br>머신러닝에서 학습 동작은 이런 선형대수 연산을 사용하기 때문에 선형대수 연산의 속도 개선은 학습 속도 개선으로 이어지게 되는 것입니다.<br><br><br>이런 CPU Instruction을 이용할 경우 학습 속도가 300%까지 빨라질 수 있다고 합니다.</p>
+</blockquote>
+<blockquote>
+<p>(해결법 및 설명 원문 : <a href="https://stackoverflow.com/questions/47068709/your-cpu-supports-instructions-that-this-tensorflow-binary-was-not-compiled-to-u" rel="external nofollow noopener noreferrer" target="_blank">https://stackoverflow.com/questions/47068709/your-cpu-supports-instructions-that-this-tensorflow-binary-was-not-compiled-to-u</a>)</p>
+</blockquote>
+<p>그다음 이어서 <code>print(sess.run(hello))</code>를 입력하여 아까 얻어온 세션의 값을 콘솔 창에 출력해 봅시다.</p>
+<p><img src="cmd_5.png" alt="py_cmd_5"></p>
+<p>위 사진과 같이 <code>b&#39;Hello World!&#39;</code>가 출력되는 것을 볼 수 있습니다.</p>
+<p>여기서 b는 자료 구조와 관련된 키워드이므로 지금은 넘어가도록 하겠습니다.</p>
+<p><span style="color:orange;">이렇게 파이썬과 텐서플로우 설치를 마치도록 하겠습니다!!</span></p>
+</div><div class="article-tags size-small is-uppercase mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/code/">code</a><a class="link-muted mr-2" rel="tag" href="/tags/python/">python</a><a class="link-muted mr-2" rel="tag" href="/tags/tensorflow/">tensorflow</a><a class="link-muted mr-2" rel="tag" href="/tags/machine-learning/">machine_learning</a><a class="link-muted mr-2" rel="tag" href="/tags/deep-leanring/">deep_leanring</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=5d0a1a560345900012ec77c4&amp;product=inline-share-buttons" defer></script></article></div> <nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/01/01/happy-new-2020/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">2020년, 회고와 새해 다짐</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/05/25/python-naver-crawling/"><span class="level-item">파이썬 셀레니움으로 네이버 기사 댓글 크롤링하기</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><script src="https://utteranc.es/client.js" repo="Kinetic27/blog-comment" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3 is-sticky"><div class="card widget"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="is-rounded" src="/images/avatar.png" alt="Kinetic27"> </figure><p class="title is-size-4 is-block line-height-inherit">Kinetic27</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">32</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">14</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">40</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://donaricano.com/mypage/1388520619_5-p6VE" target="_blank" rel="external nofollow noopener noreferrer">☕야근용 커피 사주기</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/kinetic27"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Twitter" href="https://twitter.com/dev_kinetic"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/rss2.xml"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">카탈로그</h3><ul class="menu-list"><li><a class="is-flex" href="#개발-환경-소개"><span class="mr-2">1</span><span>개발 환경 소개</span></a></li><li><a class="is-flex" href="#파이썬-설치"><span class="mr-2">2</span><span>파이썬 설치</span></a></li><li><a class="is-flex" href="#텐서플로우-Tensorflow-설치"><span class="mr-2">3</span><span>텐서플로우(Tensorflow) 설치</span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/git-gitpage/"><span class="level-start"><span class="level-item">Git &amp; GitPage</span></span><span class="level-end"><span class="level-item tag">6</span></span></a><ul class="mr-0"><li><a class="level is-mobile is-marginless" href="/categories/git-gitpage/github/"><span class="level-start"><span class="level-item">Github</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/git-gitpage/hexo/"><span class="level-start"><span class="level-item">Hexo</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/git-gitpage/recommended/"><span class="level-start"><span class="level-item">Recommended</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></li><li><a class="level is-mobile is-marginless" href="/categories/kotlin/"><span class="level-start"><span class="level-item">Kotlin</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/machine-learning/"><span class="level-start"><span class="level-item">Machine Learning</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/others/"><span class="level-start"><span class="level-item">Others</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/problem-solving/"><span class="level-start"><span class="level-item">Problem Solving</span></span><span class="level-end"><span class="level-item tag">20</span></span></a><ul class="mr-0"><li><a class="level is-mobile is-marginless" href="/categories/problem-solving/boj/"><span class="level-start"><span class="level-item">BOJ</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul class="mr-0"><li><a class="level is-mobile is-marginless" href="/categories/problem-solving/boj/kotlin/"><span class="level-start"><span class="level-item">Kotlin</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile is-marginless" href="/categories/problem-solving/programmers/"><span class="level-start"><span class="level-item">Programmers</span></span><span class="level-end"><span class="level-item tag">18</span></span></a><ul class="mr-0"><li><a class="level is-mobile is-marginless" href="/categories/problem-solving/programmers/kotlin/"><span class="level-start"><span class="level-item">Kotlin</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile is-marginless" href="/categories/programming/"><span class="level-start"><span class="level-item">Programming</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img class="logo-img" src="/images/logo.svg" alt="Kinetic&#039;s BLOG" height="28"><img class="logo-img-dark" src="/images/logo-white.svg" alt="Kinetic&#039;s BLOG" height="28"></a><p class="size-small"><span>&copy; 2021 Kinetic27</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a><br><span id="busuanzi_container_site_uv">총 방문자 <span id="busuanzi_value_site_uv">0</span>명, </span><span id="busuanzi_container_site_pv">총 조회수 <span id="busuanzi_value_site_pv">0</span>회</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub" href="https://github.com/kinetic27"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            site: {
+                url: 'http://kinetic27.github.io',
+                external_link: {"enable":true,"exclude":[]}
+            },
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="Zurück nach oben" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><script src="/js/main.js" defer></script><script src="/js/imaegoo/universe.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(Untitled)","posts":"포스트","pages":"Pages","categories":"카테고리","tags":"태그"});
+        });</script></body></html>

@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://kinetic27.github.io/sitemap.xml,https://kinetic.codes/sitemap.xml
+Sitemap: https://kinetic27.github.io/sitemap.xml
